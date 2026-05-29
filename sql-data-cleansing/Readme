@@ -1,0 +1,62 @@
+The main goal on this project was to know what is the percentage of native trees vs exotic trees (not from Brazil) used in the city's urban forestry
+to better understand, if and how native trees are taken into consideration when planting and planning the urban forestry.
+I donwloaded the data from the city hall website and imported to the SQL Server
+
+	
+	
+	Created a global temporary table to avoid modifying the original version of it, and called ## tree_record.
+While doing that I only selected the columns I intend to use for this project and renamed them into international readible name for all columns.
+
+	
+
+
+
+2)Step 2: String Sanitization (Standardization)
+I removed empty spaces using LTRIM(RTRIM(column)) for all columns and , at a same time stablished Standarized Case with UPPER. 
+
+
+To get this:
+
+
+
+
+
+
+	1) I checked how many unique values I had on the `Origen` column to check fro typos.
+
+	
+	
+	
+	
+	
+	
+	Since I was looking to know which trees are native, which are exotic and which are unknown, I standardized all those versions into just those two options and remove the lines NULL and NI (Not Identified) 
+	
+	
+	 
+	
+	To get:
+	
+	
+	
+	
+	I checked all the null values:
+
+
+	
+	
+	
+	Since those were only 0.003% of the whole set, I removed them:
+	
+	And finally count those remaining three groups and turn that result in a % and keep it to 2 decimals:
+	
+	
+	
+	
+	Then the final result was:
+
+	
+	
+ I check the 100% (61,333) number was correct just to be sure:
+	
+	
